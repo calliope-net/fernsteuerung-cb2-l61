@@ -1,5 +1,5 @@
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-    Hindernis_ausweichen_Knopf_A = !(Hindernis_ausweichen_Knopf_A)
+    Ultraschall_Sensor_Knopf_A = !(Ultraschall_Sensor_Knopf_A)
 })
 input.onButtonEvent(Button.AB, input.buttonEventClick(), function () {
     cb2.fahreStrecke(192, 31, 40)
@@ -11,7 +11,7 @@ input.onButtonEvent(Button.AB, input.buttonEventClick(), function () {
 })
 cb2.onAbstandEvent(function (abstand_Sensor, abstand_Stop, cm) {
     cb2.event_Hindernis_ausweichen(
-    Hindernis_ausweichen_Knopf_A && !(Spur_folgen_Knopf_B),
+    Ultraschall_Sensor_Knopf_A && !(Spur_Sensor_Knopf_B),
     abstand_Stop,
     255,
     16,
@@ -26,11 +26,12 @@ cb2.onAbstandEvent(function (abstand_Sensor, abstand_Stop, cm) {
     }
 })
 input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
-    Spur_folgen_Knopf_B = !(Spur_folgen_Knopf_B)
+    Spur_Sensor_Knopf_B = !(Spur_Sensor_Knopf_B)
+    Ultraschall_Sensor_Knopf_A = Spur_Sensor_Knopf_B
 })
 cb2.onSpurEvent(function (links_hell, rechts_hell, abstand_Stop) {
     cb2.event_Spur_folgen(
-    Spur_folgen_Knopf_B,
+    Spur_Sensor_Knopf_B,
     links_hell,
     rechts_hell,
     192,
@@ -41,12 +42,12 @@ cb2.onSpurEvent(function (links_hell, rechts_hell, abstand_Stop) {
     cb2.cb2_zehntelsekunden(btf.ePause.s1)
     )
 })
-let Spur_folgen_Knopf_B = false
-let Hindernis_ausweichen_Knopf_A = false
+let Spur_Sensor_Knopf_B = false
+let Ultraschall_Sensor_Knopf_A = false
 cb2.writeReset()
 btf.zeigeBIN(cb2.readVersionArray()[1], btf.ePlot.bin, 2)
-btf.zeigeBIN(0, btf.ePlot.bin, cb2.readSpannung())
+btf.zeigeBIN(cb2.readSpannung(), btf.ePlot.bcd, 4)
 basic.forever(function () {
-    cb2.raiseAbstandEvent(Hindernis_ausweichen_Knopf_A, 30, 35)
-    cb2.raiseSpurEvent(Spur_folgen_Knopf_B)
+    cb2.raiseAbstandEvent(Ultraschall_Sensor_Knopf_A, 30, 35)
+    cb2.raiseSpurEvent(Spur_Sensor_Knopf_B)
 })
