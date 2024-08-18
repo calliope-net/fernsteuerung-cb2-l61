@@ -44,6 +44,7 @@ cb2.onSpurEvent(function (links_hell, rechts_hell, abstand_Stop) {
 })
 let Spur_Sensor_Knopf_B = false
 let Ultraschall_Sensor_Knopf_A = false
+btf.comment(btf.btf_text("Erweiterung: calliope-net/fernsteuerung"))
 cb2.writeReset()
 btf.zeigeBIN(cb2.readVersionArray()[1], btf.ePlot.bin, 2)
 btf.zeigeBIN(cb2.readSpannung(), btf.ePlot.bcd, 4)
