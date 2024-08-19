@@ -29,6 +29,11 @@ input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
     Spur_Sensor_Knopf_B = !(Spur_Sensor_Knopf_B)
     Ultraschall_Sensor_Knopf_A = Spur_Sensor_Knopf_B
 })
+function Konfiguration () {
+    btf.comment(btf.btf_text("GitHub: calliope-net/fernsteuerung-cb2-l61"))
+    btf.comment(btf.btf_text("Erweiterung: calliope-net/fernsteuerung"))
+    btf.comment(btf.btf_text(",\"yotta\":{\"config\":{\"microbit-dal\":{\"bluetooth\":{\"pairing_mode\":1,\"partial_flashing\":1}}}}"))
+}
 cb2.onSpurEvent(function (links_hell, rechts_hell, abstand_Stop) {
     cb2.event_Spur_folgen(
     Spur_Sensor_Knopf_B,
@@ -44,7 +49,6 @@ cb2.onSpurEvent(function (links_hell, rechts_hell, abstand_Stop) {
 })
 let Spur_Sensor_Knopf_B = false
 let Ultraschall_Sensor_Knopf_A = false
-btf.comment(btf.btf_text("Erweiterung: calliope-net/fernsteuerung"))
 cb2.writeReset()
 btf.zeigeBIN(cb2.readVersionArray()[1], btf.ePlot.bin, 2)
 btf.zeigeBIN(cb2.readSpannung(), btf.ePlot.bcd, 4)
