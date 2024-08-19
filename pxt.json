@@ -1,5 +1,6 @@
 {
     "name": "fernsteuerung-cb2-l61",
+    "version": "0.1.0",
     "description": "",
     "dependencies": {
         "core": "*",
